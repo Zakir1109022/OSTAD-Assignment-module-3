@@ -1,0 +1,40 @@
+name: Test And Deploy The Applications
+
+on:
+    push:
+        branches:
+            - main
+    
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    test:
+        runs-on : ubuntu-latest
+
+        steps:
+            - name: Checkout The Repo
+              uses: actions/checkout@v3
+
+            - name: Install Node
+              uses: actions/setup-node@v4
+              with:
+                node-version: "22"
+
+
+            - name: Check node version
+              run: node --version
+
+            - name: Install the dependencies
+              run: npm install
+            
+            - name: Print The Test report
+              run: npm run check
+
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print Hello world
+              run: echo "hello World"
