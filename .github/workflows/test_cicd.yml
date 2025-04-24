@@ -45,12 +45,6 @@ jobs:
               with:
                 node-version: "22"
 
-
-            - name: Create The Artifact file
-              run: |
-                mkdir build
-                cd build
-                echo "Hello World" > hello.txt
             
             - name: Upload The Artiface
               uses: actions/upload-artifact@v4
